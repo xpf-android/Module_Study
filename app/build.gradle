@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion androidId.compileSdkVersion
+    buildToolsVersion androidId.buildToolsVersion
+
+    defaultConfig {
+        applicationId appId.app
+        minSdkVersion androidId.minSdkVersion
+        targetSdkVersion androidId.targetSdkVersion
+        versionCode androidId.versionCode
+        versionName androidId.versionName
+
+        testInstrumentationRunner androidId.testInstrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    /*implementation dependencies_impl.appcompat
+    implementation dependencies_impl.constraintlayout
+    testImplementation dependencies_impl.junit
+    androidTestImplementation dependencies_impl.test
+    androidTestImplementation dependencies_impl.espresso*/
+
+
+    //dependencies里面的依赖引入方式，好比Map的形式，有key, value，循环遍历引入依赖
+    dependencies_impl.each {k, v -> implementation v}
+
+
+//    implementation project(path: ':common')
+    // 如果是正式环境，即集成化模式，发布版本时，各个模块都不能独立运行了
+    if (isRelease) {
+        implementation project(path: ':order')
+        implementation project(path: ':personal')
+    } else {
+        implementation project(path: ':common')
+    }
+}

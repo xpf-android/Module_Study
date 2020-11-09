@@ -1,0 +1,5 @@
+rootProject.name='Module_Study'
+include ':app'
+include ':common'
+include ':order'
+include ':personal'
