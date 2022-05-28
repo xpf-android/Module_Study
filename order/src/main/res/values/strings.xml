@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">order</string>
+    <string name="order_debug">Order Debug环境</string>
 </resources>

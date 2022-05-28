@@ -3,7 +3,7 @@ ext{
     username = "xpf"
 
     // 生产/开发环境(true正式环境，false开发环境)
-    isRelease = true
+    isRelease = false
 
     // 建立Map存储，对象名、key都可以自定义，groovy糖果语法，非常灵活
 
